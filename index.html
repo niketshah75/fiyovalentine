@@ -38,9 +38,14 @@ h1 {
   margin: 10px 0 20px;
 }
 
+/* BUTTON ROW */
 .buttons {
+  margin-top: 10px;
   position: relative;
-  height: 70px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
 button {
@@ -54,12 +59,13 @@ button {
 #yes {
   background: #ff4d6d;
   color: white;
+  z-index: 2;
 }
 
 #no {
   background: #ccc;
   position: absolute;
-  left: 120px;
+  right: 0;
   transition: transform 0.12s linear;
 }
 
@@ -130,7 +136,6 @@ button {
 
 <script>
 window.onload = function () {
-
   const yesBtn = document.getElementById("yes");
   const noBtn = document.getElementById("no");
   const message = document.getElementById("message");
