@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Valentine 💘</title>
 
 <style>
@@ -25,7 +25,6 @@ body {
   box-shadow: 0 20px 40px rgba(0,0,0,0.25);
   width: 90%;
   max-width: 420px;
-  position: relative;
   z-index: 10;
 }
 
@@ -38,7 +37,7 @@ h1 {
   margin: 10px 0 20px;
 }
 
-/* BUTTON ROW — PURE FLEX */
+/* BUTTON ROW — PURE FLEX, NO POSITIONING */
 .buttons {
   display: flex;
   justify-content: center;
@@ -61,8 +60,7 @@ button {
 
 #no {
   background: #ccc;
-  color: #333;
-  position: relative; /* IMPORTANT */
+  transition: transform 0.15s ease;
 }
 
 .message {
@@ -120,7 +118,7 @@ button {
   <h1>Will you be my Valentine, Fiyoni? 💖</h1>
   <div class="tongue">:p</div>
 
-  <div class="buttons" id="btnRow">
+  <div class="buttons">
     <button id="yes">Yes 💕</button>
     <button id="no">No 🙃</button>
   </div>
@@ -134,30 +132,19 @@ button {
 window.onload = function () {
   const yesBtn = document.getElementById("yes");
   const noBtn = document.getElementById("no");
-  const btnRow = document.getElementById("btnRow");
   const message = document.getElementById("message");
   const card = document.getElementById("card");
   const emojis = ["🐄", "🌻"];
-
-  let escaped = false;
 
   yesBtn.onclick = function () {
     message.style.display = "block";
     launchFireworks();
   };
 
-  noBtn.onmouseover = function () {
-    if (!escaped) {
-      // convert NO to absolute AFTER first hover
-      const rect = noBtn.getBoundingClientRect();
-      noBtn.style.position = "absolute";
-      noBtn.style.left = rect.left + "px";
-      noBtn.style.top = rect.top + "px";
-      escaped = true;
-    }
-
-    const x = Math.random() * 500 - 250;
-    const y = Math.random() * 300 - 150;
+  // NO runs away using transform only
+  noBtn.onmouseenter = function () {
+    const x = Math.random() * 400 - 200;
+    const y = Math.random() * 200 - 100;
     noBtn.style.transform = `translate(${x}px, ${y}px)`;
   };
 
